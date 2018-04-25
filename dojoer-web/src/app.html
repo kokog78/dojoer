@@ -1,0 +1,41 @@
+<template>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="form-inline">
+        <button class="btn btn-danger" if.bind="isAdminUser" click.trigger="clear()">Clear</button>
+        <button class="btn btn-primary" click.trigger="reload()">Reload</button>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Name</span>
+            <input type="text" id="name" class="form-control" placeholder="Your Name" required autofocus value.bind="name">
+          </div>
+        </div>
+        <button class="btn btn-success" if.bind="isNormalUser" click.trigger="increment()">Done</button>
+        <button class="btn btn-warning" if.bind="isNormalUser" click.trigger="decrement()">Oops</button>
+        <div class="form-group" if.bind="isAdminUser">
+          <div class="input-group">
+            <span class="input-group-addon">Max</span>
+            <input type="number" id="maxValue" class="form-control" value.bind="maxValue" if.bind="isAdminUser">
+            <span class="input-group-btn">
+              <button class="btn btn-warning" click.trigger="setMaxValue()">Set Max</button>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table style="width: 100%;" class="table table-ellipsis">
+        <tr repeat.for="counter of counters" class="counter">
+          <td>${counter.key}</td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar" class.bind="'progress-bar-' + counter.class" role="progressbar" style.bind="counter.style">${counter.value}</div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</template>
